@@ -1,0 +1,10 @@
+#
+
+http_port 80 accel vhost
+http_access allow all
+cache_peer 192.168.1.18 parent 80 0 originserver name=www
+cache_peer 192.168.1.19 parent 80 0 originserver name=bbs
+cache_peer_domain www www.squid.dev
+cache_peer_domain bbs bbs.squid.dev
+visible_hostname squid.lb.dev
+cache_mgr 41683122@qq.com
