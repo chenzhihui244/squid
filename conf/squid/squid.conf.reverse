@@ -1,0 +1,11 @@
+#
+
+http_port 3128 accel vhost
+http_access allow all
+
+acl SSL_ports port 443
+
+cache_peer 192.168.1.211 parent 80 0 originserver round-robin weight=1
+#cache_peer 192.168.1.19 parent 80 0 originserver round-robin weight=1
+visible_hostname squid.reverse.dev
+cache_mgr 41683122@qq.com

@@ -1,0 +1,20 @@
+#
+
+http_port 3128 transparent
+cache_mem 64 MB
+maximum_object_size 4 MB
+cache_dir ufs /var/spool/squid 100 16 256
+access_log /var/log/squid/access.log
+acl localnet src 192.168.1.0/24
+http_access allow localnet
+http_access deny all
+visible_hostname squid.transparent.dev
+cache_mgr 41683122@qq.com
+
+# iptables
+# systemctl start iptables
+# iptables -t nat -I PREROUTING -i eth0 -s 192.168.1.0/24 -p tcp --dport 80 -j REDIRECT --to-port 3128
+# iptable save
+
+# add gateway
+# route add defatul gw xxx.xxx.xxx.xxx
