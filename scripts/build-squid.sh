@@ -37,10 +37,17 @@ make -j`nproc` all && make install
 popd
 
 if squid_is_install; then
-	chmod a+rw $SQUID_PATH/var/logs
+	if [ ! $(grep -q "squid" /etc/passwd) ]; then
+		groupadd squid
+		useradd -g squid squid
+	fi
+	chown -R nginx.nginx $SQUID_PATH
 	if [ ! $(grep -q "SQUID_PATH" scripts/profile) ]; then
 		echo "export SQUID_PATH=$SQUID_PATH" >> scripts/profile 
 	fi
+
+	ulimit -n 102400
+	echo 102400 > /proc/sys/fs/file-max
 
 	echo "$SQUID installed successfully"
 	exit 0
