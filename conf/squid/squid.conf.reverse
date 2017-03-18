@@ -1,24 +1,22 @@
-cache_effective_user nginx
-cache_effective_group nginx
-#
+cache_effective_user squid
+cache_effective_group squid
+
 acl Safe_ports port 3128 443
 acl SSL_ports port 443
 
 http_port 3128 accel vhost
-#https_port 443 cert=/u01/test/squid/install/etc/squid.crt key=/u01/test/squid/install/etc/squid.key defaultsite=192.168.1.211
+https_port 443 accel vhost cert=squid_path/etc/squid.crt key=squid_path/etc/squid.key defaultsite=upstream
+cache_peer upstream parent 80 0 no-query no-digest originserver name=www
+#cache_peer upstream parent 80 0 originserver round-robin weight=1
+
 http_access allow all
 
-cache_peer 192.168.1.211 parent 80 0 originserver round-robin weight=1
-#cache_peer 192.168.1.19 parent 80 0 originserver round-robin weight=1
+cache_dir aufs squid_path/var/cache/squid 10240 16 256
+#coredump_dir squid_path/var/coredump
 
-cache_dir aufs /u01/test/squid/install/var/cache/squid 10240 16 256
-#coredump_dir /u01/test/squid/install/var/coredump
-
-# ssl
-#cache_peer 192.168.1.211 parent 80 0 no-query no-digest originserver name=www
-#cache_peer_homain www .php-oa.com
+#access_log install/var/logs/access.log
 
 visible_hostname squid.reverse.dev
 cache_mgr 41683122@qq.com
 
-workers 64
+#workers 64

@@ -1,3 +1,4 @@
 scripts/profile
 install
 build
+*.swp

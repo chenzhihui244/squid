@@ -31,7 +31,8 @@ fi
 
 pushd build/$SQUID_DIR
 
-./configure --prefix=$SQUID_PATH
+#./configure --enable-ssl --prefix=$SQUID_PATH
+./configure --with-openssl --prefix=$SQUID_PATH &&
 make -j`nproc` all && make install
 
 popd
@@ -41,13 +42,13 @@ if squid_is_install; then
 		groupadd squid
 		useradd -g squid squid
 	fi
-	chown -R nginx.nginx $SQUID_PATH
+	chown -R squid.squid $SQUID_PATH/var
 	if [ ! $(grep -q "SQUID_PATH" scripts/profile) ]; then
 		echo "export SQUID_PATH=$SQUID_PATH" >> scripts/profile 
 	fi
 
 	ulimit -n 102400
-	echo 102400 > /proc/sys/fs/file-max
+	#echo 102400 > /proc/sys/fs/file-max
 
 	echo "$SQUID installed successfully"
 	exit 0
