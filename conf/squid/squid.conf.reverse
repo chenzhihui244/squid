@@ -11,12 +11,13 @@ cache_peer upstream parent 80 0 no-query no-digest originserver name=www
 
 http_access allow all
 
-cache_dir aufs squid_path/var/cache/squid 10240 16 256
+#cache_dir aufs squid_path/var/cache/squid 10240 16 256
 #coredump_dir squid_path/var/coredump
 
 #access_log install/var/logs/access.log
+#cache_log install/var/logs/cache.log
 
 visible_hostname squid.reverse.dev
 cache_mgr 41683122@qq.com
 
-#workers 64
+workers 64

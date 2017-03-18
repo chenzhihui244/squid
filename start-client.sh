@@ -1,6 +1,7 @@
 #!/bin/sh
 
 
-TOPDIR=`pwd`
+TOPDIR=${0%/*}
+cd $TOPDIR
 
 sh scripts/run-httpress.sh
