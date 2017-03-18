@@ -22,8 +22,5 @@ $SQUID_PATH/sbin/squid
 # check squid
 # curl 192.168.1.211:3128
 
-# install/var/logs/cache.log - start log
-# install/var/logs/access.log - access log
-
 #$SQUID_PATH/sbin/squid -k check # check conf file
 #$SQUID_PATH/sbin/squid -k rotate

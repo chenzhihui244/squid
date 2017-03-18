@@ -4,9 +4,10 @@ source scripts/profile
 
 target=${1-"localhost"}
 
-requests=1024
-threads=8
-connections=128
+threads=64
+(( connections=threads*4 ))
+(( requests=connections*4000 ))
+
 url=https://${target}/index.html
 #url=http://${target}/index.html
 #url=http://localhost/index.html
