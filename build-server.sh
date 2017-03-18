@@ -2,6 +2,6 @@
 
 TOPDIR=`pwd`
 
-sh script/build-squild.sh
-sh script/make-ca.sh
+sh scripts/build-squid.sh
+sh scripts/make-ca.sh
 
