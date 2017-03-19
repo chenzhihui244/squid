@@ -22,5 +22,5 @@ $SQUID_PATH/sbin/squid
 # curl http://192.168.1.211:3128
 # curl https://192.168.1.211
 
-#$SQUID_PATH/sbin/squid -k check # check conf file
+#$SQUID_PATH/sbin/squid -k check # check
 #$SQUID_PATH/sbin/squid -k parse # check conf file
